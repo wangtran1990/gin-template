@@ -1,0 +1,14 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git"
+  ],
+  "verbose": true,
+  "execMap": {},
+  "events": {},
+  "watch": [
+    "*"
+  ],
+  "env": {},
+  "ext": ""
+}

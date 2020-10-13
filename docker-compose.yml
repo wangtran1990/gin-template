@@ -1,0 +1,34 @@
+version: "3.5"
+
+services:
+  app:
+    image: gingonic/template:latest
+    ports: 
+      - ${RUN_PORT}:${RUN_PORT}
+    networks: 
+      - backend
+    restart: unless-stopped
+    depends_on:
+      - cache
+    healthcheck:
+      test: curl --location --request GET `http://localhost:${RUN_PORT}/m/health_check` || exit 1z
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  
+  cache:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    networks: 
+      - backend
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${CACHE_PASSWORD}"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  backend:    

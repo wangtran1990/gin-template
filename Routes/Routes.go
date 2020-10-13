@@ -1,0 +1,39 @@
+//Routes/Routes.go
+
+package routes
+
+import (
+	controllers "template/Controllers"
+	middlewares "template/Middlewares"
+
+	"github.com/gin-gonic/gin"
+)
+
+//SetupRouter ... Configure routes
+func SetupRouter() *gin.Engine {
+	routes := gin.Default()
+
+	// Use global middleware
+	routes.Use(middlewares.RequestLog())
+
+	// Recovery middleware recovers from any panics and writes a 500 if there was one
+	routes.Use(gin.Recovery())
+
+	// Routing by group ***************
+	// Monitor group
+	grpMonitor := routes.Group("/m")
+	{
+		grpMonitor.GET("health_check", controllers.HealthCheck)
+	}
+
+	// User group
+	grpUser := routes.Group("/user-api")
+	{
+		grpUser.GET("user", middlewares.Middleware3(), controllers.GetUsers)
+		grpUser.GET("user/:id", controllers.GetUserByID)
+		grpUser.POST("user", controllers.CreateUser)
+		grpUser.PUT("user/:id", controllers.UpdateUser)
+		grpUser.DELETE("user/:id", controllers.DeleteUser)
+	}
+	return routes
+}
