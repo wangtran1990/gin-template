@@ -8,7 +8,6 @@ import (
 	services "template/Services"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	jsoniter "github.com/json-iterator/go"
 )
 
@@ -16,14 +15,6 @@ var err error
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 func main() {
-
-	// Load the .env file in the current directory
-	err = godotenv.Load()
-	if err != nil {
-		services.Logger("", "").Fatal("Cannot get config from .env file ", err)
-		os.Exit(1)
-	}
-	services.Logger("", "").Infoln("Get config from .env successful")
 
 	// Set run mode
 	runmode := os.Getenv("PROD_MODE")

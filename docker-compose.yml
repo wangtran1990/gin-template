@@ -10,6 +10,7 @@ services:
     restart: unless-stopped
     depends_on:
       - cache
+    env_file: .env
     healthcheck:
       test: curl --location --request GET `http://localhost:${RUN_PORT}/m/health_check` || exit 1z
       interval: 30s
