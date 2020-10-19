@@ -2,7 +2,7 @@ package services
 
 import (
 	"time"
-	configs "template/Configs"
+	configs "template/configs"
 )
 
 // CacheGetString ...

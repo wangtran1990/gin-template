@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"fmt"
-	services "template/Services"
+	services "template/services"
 
 	"github.com/gin-gonic/gin"
 	"moul.io/http2curl"

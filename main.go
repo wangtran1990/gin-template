@@ -4,9 +4,9 @@ package main
 import (
 	"os"
 	"runtime"
-	configs "template/Configs"
-	routes "template/Routes"
-	services "template/Services"
+	configs "template/configs"
+	routes "template/routes"
+	services "template/services"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
