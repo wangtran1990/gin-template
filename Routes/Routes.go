@@ -3,8 +3,8 @@
 package routes
 
 import (
-	controllers "template/controllers"
-	middlewares "template/middlewares"
+	controllers "template/Controllers"
+	middlewares "template/Middlewares"
 
 	"github.com/gin-gonic/gin"
 )

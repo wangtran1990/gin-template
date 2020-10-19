@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	services "template/services"
+	services "template/Services"
 
 	"github.com/gin-gonic/gin"
 )

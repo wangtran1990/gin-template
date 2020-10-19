@@ -5,8 +5,8 @@ package controllers
 import (
 	"fmt"
 	"net/http"
-	models "template/models"
-	services "template/services"
+	models "template/Models"
+	services "template/Services"
 
 	"github.com/gin-gonic/gin"
 )

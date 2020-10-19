@@ -4,7 +4,7 @@ package models
 
 import (
 	"fmt"
-	configs "template/configs"
+	configs "template/Configs"
 
 	_ "github.com/go-sql-driver/mysql"
 )

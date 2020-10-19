@@ -4,7 +4,7 @@ package controllers
 
 import (
 	"net/http"
-	services "template/services"
+	services "template/Services"
 
 	"github.com/gin-gonic/gin"
 )

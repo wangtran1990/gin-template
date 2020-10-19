@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	configs "template/configs"
-	ecode "template/constants"
-	models "template/models"
+	configs "template/Configs"
+	ecode "template/Constants"
+	models "template/Models"
 
 	log "github.com/sirupsen/logrus"
 
