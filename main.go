@@ -20,7 +20,9 @@ func init() {
 	// Set run CPU
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	services.Logger("", "").Infoln("Num CPU: ", runtime.NumCPU())
+}
 
+func main() {
 	// Load the .env file in the current directory
 	// .env already load in-case run by docker-compose
 	err = godotenv.Load()
@@ -61,9 +63,7 @@ func init() {
 	} else {
 		services.Logger("", "").Infoln("Cache server connect successful")
 	}
-}
 
-func main() {
 	// Init routes
 	r := routes.SetupRouter()
 
