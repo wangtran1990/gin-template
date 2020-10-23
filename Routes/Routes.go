@@ -24,6 +24,7 @@ func SetupRouter() *gin.Engine {
 	grpMonitor := routes.Group("/m")
 	{
 		grpMonitor.GET("health_check", controllers.HealthCheck)
+		grpMonitor.GET("load_test", controllers.LoadTest)
 	}
 
 	// User group

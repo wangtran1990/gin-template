@@ -14,9 +14,10 @@ DOCKER
 
 Build image
   docker build -t gingonic/template:0.0.1 -t gingonic/template:latest .
+  docker build -t gingonic/template:latest .
 
 Run image
-  docker run --name running-gingonic -p 127.0.0.1:2000:2000 gingonic/template:0.0.1
+  docker run --name running-gingonic -p 127.0.0.1:2000:2000 gingonic/template:latest
 
 Run docker-compose
   docker-compose up
