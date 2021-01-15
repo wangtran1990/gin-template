@@ -20,6 +20,13 @@ func SetupRouter() *gin.Engine {
 	routes.Use(gin.Recovery())
 
 	// Routing by group ***************
+	// Demo group
+	grpDemo := routes.Group("/dm")
+	{
+		grpDemo.GET("http_request", controllers.HTTPRequestDemo)
+		grpDemo.GET("http_request_retry", controllers.HTTPRetryRequestDemo)
+		grpDemo.GET("http_request_async", controllers.HTTPAsyncRequestDemo)
+	}
 	// Monitor group
 	grpMonitor := routes.Group("/m")
 	{

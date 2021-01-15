@@ -10,6 +10,7 @@ require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/joho/godotenv v1.3.0
 	github.com/json-iterator/go v1.1.10
+	github.com/sendgrid/rest v2.6.2+incompatible
 	github.com/sirupsen/logrus v1.6.0
 	moul.io/http2curl v1.0.0
 )
