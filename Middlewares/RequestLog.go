@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"fmt"
-	services "template/Services"
+	helper "template/Helper"
 
 	"github.com/gin-gonic/gin"
 	"moul.io/http2curl"
@@ -17,10 +17,10 @@ func RequestLog() gin.HandlerFunc {
 }
 
 func _procRequestLog(c *gin.Context) {
-	txnID := services.LogTraceID()
+	txnID := helper.LogTraceID()
 	c.Set("x-request-id", txnID)                 // set to request param
 	c.Writer.Header().Set("X-Request-Id", txnID) // set to request header
 
 	curl, _ := http2curl.GetCurlCommand(c.Request)
-	services.Logger(txnID, "").Infoln(fmt.Sprint(curl))
+	helper.Logger(txnID, "").Infoln(fmt.Sprint(curl))
 }

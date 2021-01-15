@@ -5,14 +5,14 @@ package controllers
 import (
 	"fmt"
 	"net/http"
-	services "template/Services"
+	helper "template/Helper"
 
 	"github.com/gin-gonic/gin"
 )
 
 // HealthCheck ... health check service
 func HealthCheck(c *gin.Context) {
-	resultDB := services.CheckDatabase()
+	resultDB := helper.CheckDatabase()
 	if resultDB == "" {
 		c.AbortWithStatus(http.StatusServiceUnavailable)
 		return
@@ -31,7 +31,7 @@ func LoadTest(c *gin.Context) {
 	}
 
 	// #2
-	resultDB := services.CheckDatabase()
+	resultDB := helper.CheckDatabase()
 	fmt.Println(resultDB)
 
 	// #3
@@ -42,7 +42,7 @@ func LoadTest(c *gin.Context) {
 	fmt.Println(tmp)
 
 	// #4
-	resultDB = services.CheckDatabase()
+	resultDB = helper.CheckDatabase()
 	fmt.Println(resultDB)
 
 	c.JSON(http.StatusOK, "OK")

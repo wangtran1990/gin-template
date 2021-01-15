@@ -6,7 +6,7 @@ import (
 	"runtime"
 	configs "template/Configs"
 	routes "template/Routes"
-	services "template/Services"
+	helper "template/Helper"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -19,7 +19,7 @@ var json = jsoniter.ConfigCompatibleWithStandardLibrary
 func init() {
 	// Set run CPU
 	runtime.GOMAXPROCS(runtime.NumCPU())
-	services.Logger("", "").Infoln("Num CPU: ", runtime.NumCPU())
+	helper.Logger("", "").Infoln("Num CPU: ", runtime.NumCPU())
 }
 
 func main() {
@@ -27,9 +27,9 @@ func main() {
 	// .env already load in-case run by docker-compose
 	err = godotenv.Load()
 	if err != nil {
-		services.Logger("", "").Warningln("Cannot get config from .env file manual - if run from docker-compose skip this warning", err)
+		helper.Logger("", "").Warningln("Cannot get config from .env file manual - if run from docker-compose skip this warning", err)
 	} else {
-		services.Logger("", "").Infoln("Get config from .env successful")
+		helper.Logger("", "").Infoln("Get config from .env successful")
 	}
 
 	// Set run mode
@@ -44,24 +44,24 @@ func main() {
 	// Start DB
 	err = configs.InitDB()
 	if err != nil {
-		services.Logger("", "").Warningln("Can't connect RDB. ", err)
+		helper.Logger("", "").Warningln("Can't connect RDB. ", err)
 	} else {
-		services.Logger("", "").Infoln("Database connect successful")
+		helper.Logger("", "").Infoln("Database connect successful")
 		defer configs.DB.Close()
 
 		// Auto migration
 		migration := os.Getenv("RDB_AUTO_MIGRATION")
 		if migration == "1" {
-			services.MigrateDataTable()
+			helper.MigrateDataTable()
 		}
 	}
 
 	// Start Cache
 	err = configs.InitCache()
 	if err != nil {
-		services.Logger("", "").Warningln("Can't connect Cache service. ", err)
+		helper.Logger("", "").Warningln("Can't connect Cache service. ", err)
 	} else {
-		services.Logger("", "").Infoln("Cache server connect successful")
+		helper.Logger("", "").Infoln("Cache server connect successful")
 	}
 
 	// Init routes

@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	services "template/Services"
+	helper "template/Helper"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,5 +17,5 @@ func Middleware3() gin.HandlerFunc {
 }
 
 func _procMiddleware3(c *gin.Context) {
-	services.Logger("", "").Infoln("Middleware 3")
+	helper.Logger("", "").Infoln("Middleware 3")
 }

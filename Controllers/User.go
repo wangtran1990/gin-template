@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	models "template/Models"
-	services "template/Services"
+	helper "template/Helper"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,14 +14,14 @@ import (
 //GetUsers ... Get all users
 func GetUsers(c *gin.Context) {
 	requestID := c.GetString("x-request-id")
-	services.Logger(requestID, "").Infoln("RequestID= ", requestID)
-	// cacheTest := services.CacheExists("xxxxxxxxxx")
-	// services.Logger(requestID, "").Infoln("cacheTest= ", cacheTest)
+	helper.Logger(requestID, "").Infoln("RequestID= ", requestID)
+	// cacheTest := helper.CacheExists("xxxxxxxxxx")
+	// helper.Logger(requestID, "").Infoln("cacheTest= ", cacheTest)
 
-	httpCode, body, erro := services.MakeHTTPRequest("GET", "https://api-101.glitch.me/customers", "", nil, true)
-	services.Logger(requestID, "").Infoln("httpCode= ", httpCode)
-	services.Logger(requestID, "").Infoln("body= ", fmt.Sprintf("%s", body))
-	services.Logger(requestID, "").Infoln("error= ", erro)
+	httpCode, body, erro := helper.MakeHTTPRequest("GET", "https://api-101.glitch.me/customers", "", nil, true)
+	helper.Logger(requestID, "").Infoln("httpCode= ", httpCode)
+	helper.Logger(requestID, "").Infoln("body= ", fmt.Sprintf("%s", body))
+	helper.Logger(requestID, "").Infoln("error= ", erro)
 
 	var user []models.User
 	err := models.GetAllUsers(&user)
